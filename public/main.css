@@ -1,0 +1,14 @@
+h1 {
+  text-align: center;
+  
+}
+
+header div{
+  padding:30px;
+  width:100%;
+  background: #dd0244;
+}
+header h1{
+  text-align: left; 
+  font-size:80px; 
+}
