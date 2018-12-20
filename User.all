@@ -1,0 +1,10 @@
+
+[1mFrom:[0m /home/rashell/project/Rumblr_Project/app.rb @ line 77 :
+
+    [1;34m72[0m: get [31m[1;31m'[0m[31m/logout[1;31m'[0m[31m[0m [32mdo[0m
+    [1;34m73[0m:   session[[33m:user_id[0m] = [1;36mnil[0m
+    [1;34m74[0m:   redirect [31m[1;31m'[0m[31m/login[1;31m'[0m[31m[0m
+    [1;34m75[0m: [32mend[0m
+    [1;34m76[0m: 
+ => [1;34m77[0m: binding.pry
+

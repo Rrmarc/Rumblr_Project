@@ -1,0 +1,14 @@
+
+<% if @blog_post %>
+    <% for blog in @blog_post do %>
+        <h2 id="title"> <%= blog.title%> </h2>
+        <div id="blog_div">
+            <br>
+                <img id="photo"src="<%= blog.img%>">
+            <br>
+                <p id="posting"><%= blog.post%></p>
+
+        </div>
+
+        <% end %>
+<% end %>

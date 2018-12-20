@@ -5,7 +5,7 @@ require 'sqlite3'
 require 'active_record'
 
 #require classes
-require './models/account.rb'
+require './models/post.rb'
 require './models/user.rb'
 
 # Use `binding.pry` anywhere in this script for easy debugging

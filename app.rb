@@ -3,10 +3,13 @@ require 'sinatra/reloader'
 require 'sqlite3'
 require 'active_record'
 require 'pry'
+require 'time'
+
 
 #require classes
 
 require './models/user.rb'
+require './models/post.rb'
 
 # Connect to a sqlite3 database
 # If you feel like you need to reset it, simply delete the file sqlite makes
@@ -20,7 +23,6 @@ enable :sessions
 set :session_secret, "eetatasfasdafgG"
 
 get '/' do
-  puts 'tttttttttttt'
   puts session[:user_id]
   if session[:user_id]
     @user = User.find(session[:user_id])
@@ -30,74 +32,47 @@ get '/' do
   end
 end
 
-# get '/' do
-#   erb :index
-# end
-
-
-# get '/sales' do
-#   if session[:user_id]
-#     @all_sales = Sale.all.reverse
-#     erb :all
-#   else
-#     erb :not_allowed
-#   end
-
-# end
-
-# get '/sales/delete/:id' do
-#   Sale.find(params["id"]).destroy
-#   redirect '/sales'
-# end
-
-# post '/sales' do
-#   puts ">>>>>"
-#   puts params
-#   puts ">>>>>"
-
-#   # make a customer record
-#   customer_instance = Customer.create(
-#     first_name: params["first_name"],
-#     last_name: params["last_name"],
-#     gender: params["gender"],
-#     phone_number: params["phone_number"],
-#     email: params["email"]
-#   )
-#   # make a car record
-#   car_instance = Car.create(
-#     make: params["make"],
-#     model: params["model"],
-#     year: params["year"],
-#     sale_markup: params["sale_markup"],
-#     cost_price: params["cost_price"]
-#   )
-#   # make a Transaction with both
-#   Sale.create(car: car_instance, customer: customer_instance)
-
-#   redirect '/sales'
-# end
-
 get '/login' do
   erb :login
 end
 
+
+
 post '/users/login' do
   user = User.find_by(email: params["email"], password: params["password"])
-  puts ">>>>>>>>>>>>"
-  puts user.inspect
-  puts ">>>>>>>>>>>>"
+
   if user
     session[:user_id] = user.id
-    redirect '/'
+    redirect '/users/posts'
   else
     redirect '/login'
   end
 end
 
 get '/signup' do
- 
-
   erb :signup
+end
+
+get '/user/post' do
+  erb :post
+end
+
+
+post '/user/post' do
+postTime = Time.now  
+post_instance = Post.create(title: params["post_title"], author: params["author"], post: params["user_post"], post_date: postTime, img: params["user_img"])
+#  puts post_instance.inspect
+ redirect '/displayPost'
+# erb :all_post
+  
+end
+
+# change this route
+get "/displayPost" do
+
+ @blog_post = Post.all 
+ 
+ erb :all_post
 end
 
 post '/users/signup' do
@@ -118,5 +93,8 @@ end
 
 get '/logout' do
   session[:user_id] = nil
-  redirect '/login'
+  redirect '/'
 end
+
+# binding.pry
+

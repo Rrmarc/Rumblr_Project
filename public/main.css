@@ -1,3 +1,10 @@
+*{
+  padding:0;
+  margng:0;
+  
+}
+
+
 h1 {
   text-align: center;
   
@@ -11,4 +18,42 @@ header div{
 header h1{
   text-align: left; 
   font-size:80px; 
+}
+
+.content_box{
+  margin: 0 auto;
+  width:700px;
+  height: 300px;
+  display:grid;
+  grid-template-columns:;
+  grid-column-gap:;
+  background:  #dd0244;
+}
+
+.first_buttons{
+  position: relative;
+  left:500px;
+}
+
+
+#title{
+  font-size:1em;
+  margin:10px 50px 50px 150px;
+}
+#blog_div{
+  width:80%;
+  height:400px;
+  margin:0 auto;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0,0.6);
+  border-radius: 5px;
+  background-color: red;
+}
+#photo{
+  width:100%;
+  height:75%;
+  background-color: green;
+}
+#posting{
+  width:100%;
+  height:25%;
 }
