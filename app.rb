@@ -28,7 +28,7 @@ get '/' do
     @user = User.find(session[:user_id])
     erb :index
   else
-    erb :not_allowed
+    erb :index
   end
 end
 
@@ -36,6 +36,10 @@ get '/login' do
   erb :login
 end
 
+get '/user/post' do
+    @user = User.find(session[:user_id])
+    erb :post
+end
 
 
 post '/users/login' do
@@ -43,7 +47,7 @@ post '/users/login' do
 
   if user
     session[:user_id] = user.id
-    redirect '/users/posts'
+    redirect '/'
   else
     redirect '/login'
   end
@@ -59,19 +63,19 @@ end
 
 
 post '/user/post' do
-postTime = Time.now  
+postTime = Time.now
 post_instance = Post.create(title: params["post_title"], author: params["author"], post: params["user_post"], post_date: postTime, img: params["user_img"])
 #  puts post_instance.inspect
  redirect '/displayPost'
 # erb :all_post
-  
+
 end
 
 # change this route
 get "/displayPost" do
+ @user = User.find(session[:user_id])
+ @blog_post = Post.all
 
- @blog_post = Post.all 
- 
  erb :all_post
 end
 
