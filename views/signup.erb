@@ -1,4 +1,9 @@
-<div id="singup">
+<div id="popup">
+        <div class="popup_content">
+
+        <div class="exit_button">
+        <a href="/login"><img src="x-symbol.png"></a>
+        </div>
 
     <form class="ui form" method="POST" action="/users/signup">
         <h2>SIGN UP</h2>
@@ -13,7 +18,6 @@
                 <input required type="text" name="last_name" placeholder="Last Name">
             </div>
         </div>
-
 
         <div class="field">
             <label>Email</label>
@@ -31,9 +35,8 @@
                 <input required type="text" name="password" placeholder="Password">
             </div>
 
-            <button id="singup_button" class="ui button" type="submit">Save</button>
+            <button id="singup_button" class="ui button" type="submit">Submit</button>
 
         </div>
     </form>
-
 </div>

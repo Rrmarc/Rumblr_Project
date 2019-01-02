@@ -1,8 +1,12 @@
-<div class="content_box">
-<p>sample text</p>
+<div class="make_post_button">
+    <a href="/user/post"><img src="round-add-button.png"></a>
+</div>
 
-</div>
-<div id = "read_post" class="content_box">
-    <a id="link_to_next"></a>
-    <p>sample text</p>
-</div>
+<% if @blog_post %>
+<% for blog in @blog_post do %>
+    <div class="content_box">
+      <div class="ui raised segment ">
+      <p><%= blog.post %></p>
+    </div>
+<% end %>
+<% end %> 

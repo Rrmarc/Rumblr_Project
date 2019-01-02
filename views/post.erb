@@ -1,30 +1,33 @@
 
 <form class="ui form" method="POST" action="/user/post">
-  <h2>Customer Info</h2>
+    <h2>Create Post</h2>
+    <div class="two fields">
+      <div class="field">
+        <label>Author</label>
+        <input required type="text" name="author" placeholder="whats on you mind" ></input>
+      </div>
+    </div>
 
     <div class="two fields">
-    <div class="field">
-      <label>Author</label>
-           <input required type="text" name="author" placeholder="whats on you mind" ></input>
-    </div>
-    </div>
-
-    <div class="field">
-    <label>Title</label>
-           <input required type="text" name="post_title" placeholder="whats on you mind" ></input>
-  </div>
-
-  <div class="two fields">
-    <div class="field">
-      <label>Post</label>
-      <textarea required type="text" name="user_post" placeholder="whats on you mind" col="50" row="10"></textarea>
-    </div>
+      <div class="field">
+        <label>Title</label>
+        <input required type="text" name="post_title" placeholder="whats on you mind" ></input>
+      </div>
     </div>
 
-    <div class="field">
-    <label>Add Image</label>
-    <input required type="text" name="user_img" placeholder="whats on you mind" ></input>
-  </div>
+    <div class="two fields">
+      <div class="field">
+        <label>Post</label>
+        <textarea required type="text" name="user_post" placeholder="whats on you mind" col="50" row="10"></textarea>
+      </div>
+    </div>
+
+    <div class="two fields">
+      <div class="field">
+      <label>Add Image</label>
+      <input required type="text" name="user_img" placeholder="whats on you mind" ></input>
+      </div>
+    </div>
 
   <button class="ui button" type="submit">Save</button>
 </form>

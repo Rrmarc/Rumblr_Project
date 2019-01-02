@@ -1,19 +1,29 @@
 
 
-
+<div id="login_div">
 <form class="ui form" method="POST" action="/users/login">
   <h2>LOGIN</h2>
-  <div class="two fields">
-    <div class="field">
-      <label>Email</label>
-      <input required type="text" name="email">
-    </div>
+   
+      <div class="two fields">
+        <div class="field">
+          <label>Email</label>
+          <input required type="text" name="email">
+        </div>
+      </div>
+ 
+  
+      <div class="two fields">
+        <div class="field">
+          <label>Password</label>
+          <input required type="password" name="password">
+        </div>
+      </div>
+    
+      <button class="ui button login" type="submit">Login</button>
 
-    <div class="field">
-      <label>Password</label>
-      <input required type="password" name="password">
-    </div>
-  </div>
-
-  <button class="ui button" type="submit">Login</button>
+      <br>
+  
+    <a href="/signup"><p>Create New Account</p></a>
+  
 </form>
+</div>

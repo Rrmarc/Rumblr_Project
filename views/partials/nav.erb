@@ -1,19 +1,32 @@
 <nav>
-<a href="/" class="ui primary button">
-Home
-</a>
+ 
+    <div class="nav_section"> 
+        <% if @user %>
+        <div class='log_singup'>
+            
+            <a href="/displayPost">
+            Profile
+            </a>
+           
+            <a href="/user/post">
+            Post
+            </a>
+            
+            <a href="/logout">
+            Logout
+            </a>
+        </div>
 
-<a href="/displayPost" class="ui primary button">
-Profile
-</a>
+        <% else %>
+        <div class='log_singup'>
+            <a href="/login" >
+            Login
+            </a>
 
-
-<a href="/logout" class="ui primary button">
-Logout
-</a>
-
-<a href="/user/post" class="ui primary button">
-Post
-</a>
-
+            <a href="/signup">
+            Sign Up
+            </a>
+        </div>    
+        <% end %>
+    </div>   
 </nav>

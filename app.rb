@@ -22,6 +22,12 @@ register Sinatra::Reloader
 enable :sessions
 set :session_secret, "eetatasfasdafgG"
 
+
+
+
+
+
+# _____________________________________________
 get '/' do
   puts session[:user_id]
   if session[:user_id]
@@ -32,15 +38,24 @@ get '/' do
   end
 end
 
+post '/' do
+  
+  @blog_post = Post.all
+  erb :index
+end
+
+
+
+
+
+
 get '/login' do
   erb :login
 end
 
-get '/user/post' do
-    @user = User.find(session[:user_id])
-    erb :post
-end
-
+# _______________________________________________________
+#this will get the information inputed from the form
+# checks to see if email and password exist
 
 post '/users/login' do
   user = User.find_by(email: params["email"], password: params["password"])
@@ -49,35 +64,15 @@ post '/users/login' do
     session[:user_id] = user.id
     redirect '/'
   else
+    # if user does not exist it will send the back to login page
     redirect '/login'
   end
 end
-
+# _______________________________________________________
 get '/signup' do
   erb :signup
 end
 
-get '/user/post' do
-  erb :post
-end
-
-
-post '/user/post' do
-postTime = Time.now
-post_instance = Post.create(title: params["post_title"], author: params["author"], post: params["user_post"], post_date: postTime, img: params["user_img"])
-#  puts post_instance.inspect
- redirect '/displayPost'
-# erb :all_post
-
-end
-
-# change this route
-get "/displayPost" do
- @user = User.find(session[:user_id])
- @blog_post = Post.all
-
- erb :all_post
-end
 
 post '/users/signup' do
   temp_user = User.find_by(email: params["email"])
@@ -94,11 +89,56 @@ post '/users/signup' do
     redirect '/'
   end
 end
+# _______________________________________________________
+
+
+# _______________________________________________________
+# when you click on plus sign button to create a post if not 
+# logged in then clicking on this "plus" button will send you 
+# to loggin page.
+
+get '/user/post' do
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+    erb :post
+  else
+    erb :login
+  end
+end
+
+
+post '/user/post' do
+ 
+  postTime = Time.now
+  post_instance = Post.create(title: params["post_title"], author: params["author"], post: params["user_post"], post_date: postTime, img: params["user_img"])
+  #  puts post_instance.inspect
+  redirect '/displayPost'
+  # erb :all_post
+
+end
+
+# change this route
+get "/displayPost" do
+ @user = User.find(session[:user_id])
+ @blog_post = Post.all
+
+#  this will show when click on 'Profile' nav button
+ erb :all_post
+end
+
+
+get '/user/post/delete/' do
+  "Hello World"
+end
 
 get '/logout' do
   session[:user_id] = nil
   redirect '/'
 end
 
+
 # binding.pry
+
+
+
 
