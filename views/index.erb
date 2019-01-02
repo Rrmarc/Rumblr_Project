@@ -2,11 +2,23 @@
     <a href="/user/post"><img src="round-add-button.png"></a>
 </div>
 
-<% if @blog_post %>
+
+
 <% for blog in @blog_post do %>
-    <div class="content_box">
-      <div class="ui raised segment ">
-      <p><%= blog.post %></p>
-    </div>
+
+        <div id="blog_div" >
+            <br>
+                <img id="photo"src="<%= blog.image %>">
+            <br>
+                <p id="posting"><%= blog.name %></p>
+
+                <% if  session[:user_id] = blog.user_id %>
+                 <p><a href="/user/post/delete/<%@post%>" class="ui primary button" method= delete> DELETE </a> </p>
+                <% end %>
+            <br>
+
+        </div>
+
 <% end %>
-<% end %> 
+
+

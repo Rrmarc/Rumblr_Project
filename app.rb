@@ -16,7 +16,6 @@ if ENV['DATABASE_URL']
 require 'pg'
     ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 else
-
 require 'sqlite3'
     ActiveRecord::Base.establish_connection(
     adapter: 'sqlite3',
@@ -33,10 +32,11 @@ set :session_secret, "eetatasfasdafgG"
 get '/' do
   puts session[:user_id]
   if session[:user_id]
+    @blog_post = Post.all.reverse
     @user = User.find(session[:user_id])
     erb :index
   else
-    erb :index
+    erb :login
   end
 end
 
@@ -109,10 +109,12 @@ post '/user/post' do
 
 end
 
+
+
 # change this route
 get "/displayPost" do
  @user = User.find(session[:user_id])
- @blog_post = Post.all.reverse
+ @blog_post = @user.posts.all.reverse
 
 #  this will show when click on 'Profile' nav button
  erb :all_post
