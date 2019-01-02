@@ -13,11 +13,14 @@ require 'pry'
 
 # Connect to a sqlite3 database
 # If you feel like you need to reset it, simply delete the file sqlite makes
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'db/rumblr.db'
-)
 
+if ENV['DATABASE_URL']
+    ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+else
+ ActiveRecord::Base.establish_connection(
+    adapter: 'sqlite3',
+    database: 'db/rumblr.db'
+    )
 
 # Account.create(name: "Rashell", last_name: "Marcelino", birthday:1998-02-06, email: "rashell12@live.com", password: "123pass")
 

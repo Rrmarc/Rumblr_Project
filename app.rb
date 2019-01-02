@@ -23,10 +23,6 @@ enable :sessions
 set :session_secret, "eetatasfasdafgG"
 
 
-
-
-
-
 # _____________________________________________
 get '/' do
   puts session[:user_id]
@@ -39,7 +35,7 @@ get '/' do
 end
 
 post '/' do
-  
+
   @blog_post = Post.all
   erb :index
 end
@@ -93,8 +89,8 @@ end
 
 
 # _______________________________________________________
-# when you click on plus sign button to create a post if not 
-# logged in then clicking on this "plus" button will send you 
+# when you click on plus sign button to create a post if not
+# logged in then clicking on this "plus" button will send you
 # to loggin page.
 
 get '/user/post' do
@@ -108,7 +104,7 @@ end
 
 
 post '/user/post' do
- 
+
   postTime = Time.now
   post_instance = Post.create(title: params["post_title"], author: params["author"], post: params["user_post"], post_date: postTime, img: params["user_img"])
   #  puts post_instance.inspect
