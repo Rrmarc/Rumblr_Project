@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require 'sqlite3'
 require 'active_record'
 require 'pry'
 require 'time'
@@ -13,10 +12,17 @@ require './models/post.rb'
 
 # Connect to a sqlite3 database
 # If you feel like you need to reset it, simply delete the file sqlite makes
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'db/rumblr.db'
-)
+if ENV['DATABASE_URL']
+require 'pg'
+    ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+else
+
+require 'sqlite3'
+    ActiveRecord::Base.establish_connection(
+    adapter: 'sqlite3',
+    database: 'db/rumblr.db'
+    )
+end
 
 register Sinatra::Reloader
 enable :sessions
@@ -33,16 +39,6 @@ get '/' do
     erb :index
   end
 end
-
-post '/' do
-
-  @blog_post = Post.all
-  erb :index
-end
-
-
-
-
 
 
 get '/login' do
@@ -106,7 +102,7 @@ end
 post '/user/post' do
 
   postTime = Time.now
-  post_instance = Post.create(title: params["post_title"], author: params["author"], post: params["user_post"], post_date: postTime, img: params["user_img"])
+  post_instance = Post.create(name: params["user_post"], post_date: postTime, image: params["user_img"])
   #  puts post_instance.inspect
   redirect '/displayPost'
   # erb :all_post
@@ -116,7 +112,7 @@ end
 # change this route
 get "/displayPost" do
  @user = User.find(session[:user_id])
- @blog_post = Post.all
+ @blog_post = Post.all.reverse
 
 #  this will show when click on 'Profile' nav button
  erb :all_post

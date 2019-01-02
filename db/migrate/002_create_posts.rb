@@ -1,11 +1,12 @@
-class CreatePosts < ActiveRecord:: Migration[5.0]
+class CreatePosts < ActiveRecord::Migration
     def up
         create_table :posts do |t|
-        ;
-          t.string :title
-          t.string :user_id
+
+          t.integer :user_id
           t.string :name
           t.timestamp :post_date
+          t.string :image
+
         end
       end
 

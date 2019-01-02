@@ -1,7 +1,7 @@
-class CreateUsers < ActiveRecord:: Migration[5.0]
+class CreateUsers < ActiveRecord::Migration
     def up
         create_table :users do |t|
-          
+
           t.string :name
           t.string :last_name
           t.date :birthday
@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord:: Migration[5.0]
 
         end
       end
-    
+
       def down
         drop_table :users
       end

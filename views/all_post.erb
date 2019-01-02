@@ -1,14 +1,14 @@
 
 <% if @blog_post %>
 <% for blog in @blog_post do %>
-    <h2 id="title"> <%= blog.title%> </h2>
+
         <div id="blog_div" >
             <br>
-                <img id="photo"src="<%= blog.img %>">
+                <img id="photo"src="<%= blog.image %>">
             <br>
-                <p id="posting"><%= blog.post %></p>
+                <p id="posting"><%= blog.name %></p>
                 <p> <a href="/user/post/delete/<%@post%>" class="ui primary button" method= delete> DELETE </a> </p>
-            <br>  
+            <br>
         </div>
 
 <% end %>
